@@ -3,7 +3,7 @@
 [![CI](https://github.com/appercept/plausible_proxy_rails/actions/workflows/ci.yml/badge.svg)](https://github.com/appercept/plausible_proxy_rails/actions/workflows/ci.yml)
 [![Gem Version](https://badge.fury.io/rb/plausible_proxy_rails.svg)](https://rubygems.org/gems/plausible_proxy_rails)
 
-A Rails Engine that proxies [Plausible Analytics](https://plausible.io) requests through your application server. This keeps analytics working for visitors who block third-party scripts, removes the need for `plausible.io` in your Content Security Policy, and improves visitor privacy by preventing direct connections to external servers.
+A Rails Engine that proxies [Plausible Analytics](https://plausible.io) requests through your application server, so visitors never connect to a third-party domain. This means analytics work even when third-party scripts are blocked, and you don't need `plausible.io` in your Content Security Policy.
 
 ## How It Works
 
@@ -60,7 +60,7 @@ Add the script tag to your layout:
 </head>
 ```
 
-This renders a `<script>` tag that loads the analytics script from your proxy path and sends events through it. When the proxy is disabled (e.g., in development), `plausible_tag` returns `nil` and nothing is rendered.
+When the proxy is disabled (e.g., in development), `plausible_tag` returns `nil` and nothing is rendered.
 
 ## Self-Hosted Plausible
 
@@ -87,6 +87,12 @@ config.script_url = "https://plausible.io/js/script.file-downloads.outbound-link
 ```
 
 See the [Plausible docs](https://plausible.io/docs/plausible-script) for more on script options.
+
+## Why Not Proxy at the Web Server Level?
+
+Plausible's [proxy guides](https://plausible.io/docs/proxy/introduction) cover NGINX, Caddy, and others. But plenty of Rails apps run on Heroku, Render, or Fly.io where you don't control the web server config. This gem handles it at the app layer instead — add the gem, configure it, done. The proxy setup travels with your app and works the same everywhere.
+
+If you're already proxying through NGINX, you don't need this.
 
 ## Requirements
 
