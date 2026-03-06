@@ -1,5 +1,8 @@
 # Plausible Proxy Rails
 
+[![CI](https://github.com/appercept/plausible_proxy_rails/actions/workflows/ci.yml/badge.svg)](https://github.com/appercept/plausible_proxy_rails/actions/workflows/ci.yml)
+[![Gem Version](https://badge.fury.io/rb/plausible_proxy_rails.svg)](https://rubygems.org/gems/plausible_proxy_rails)
+
 A Rails Engine that proxies [Plausible Analytics](https://plausible.io) requests through your application server. This keeps analytics working for visitors who block third-party scripts, removes the need for `plausible.io` in your Content Security Policy, and improves visitor privacy by preventing direct connections to external servers.
 
 ## How It Works
